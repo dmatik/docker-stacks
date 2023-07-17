@@ -1,3 +1,4 @@
 services:
   hello-world:
+    restart: always
     image: hello-world
