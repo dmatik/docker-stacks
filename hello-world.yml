@@ -2,5 +2,5 @@ services:
   hello-world:
     hostname: hello-world
     container_name: hello-world
-    restart: always
+    restart: ${ALWAYS}
     image: hello-world
