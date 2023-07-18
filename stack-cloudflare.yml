@@ -1,0 +1,14 @@
+services:
+
+    cloudflare-tunnel:
+        container_name: cloudflare-tunnel
+        hostname: cloudflare-tunnel
+        image: cloudflare/cloudflared:latest
+        restart: always
+        volumes:
+            - /volume1/docker/cloudflare/config:/config
+            - /etc/localtime:/etc/localtime
+        environment:
+            TZ: "Asia/Jerusalem"
+        network_mode: host   
+        command: tunnel --no-autoupdate run --token ${CF_TUNNEL_TOKEN}   
