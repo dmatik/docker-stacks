@@ -1,0 +1,30 @@
+services:
+
+    oref-alerts:
+        image: dmatik/oref-alerts:latest
+        container_name: oref-alerts
+        hostname: oref-alerts
+        restart: unless-stopped
+        network_mode: "bridge"
+        ports:
+          - 49000:9001
+        environment:
+            TZ: "Asia/Jerusalem"
+            LOGGING_LEVEL_COM_DMATIK_OREFALERTS_SERVICE: "INFO"
+
+    oref-alerts-dev:
+        image: dmatik/oref-alerts:v1.0.9-dev
+        container_name: oref-alerts-dev
+        hostname: oref-alerts-dev
+        restart: unless-stopped
+        network_mode: "bridge"
+        ports:
+          - 49100:9001
+        environment:
+            TZ: "Asia/Jerusalem"
+            LOGGING_LEVEL_COM_DMATIK_OREFALERTS_SERVICE: "INFO"
+            CURRENT_ALERT_MOCK: ""
+            HISTORY_MOCK: ""
+            CURRENT_ALERT_TEST_MODE: ""
+            CURRENT_ALERT_TEST_MODE_LOC: "אשדוד"
+            HISTORY_TEST_MODE: ""
