@@ -1,0 +1,31 @@
+services:
+
+    mariadb:
+        restart: always
+        hostname: mariadb
+        container_name: mariadb
+        image: mariadb:latest
+        network_mode: "bridge"
+        ports:
+            - "3306:3306"
+        environment:
+            TZ: "Asia/Jerusalem"
+            MYSQL_DATABASE: HomeAssistantDB
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        volumes:
+            - /volume1/docker/mariadb/config:/etc/mysql/conf.d
+            - /volume1/docker/mariadb/data:/var/lib/mysql
+
+
+    phpMyAdmin:
+        restart: always
+        hostname: phpMyAdmin
+        container_name: phpMyAdmin
+        image: phpmyadmin/phpmyadmin:latest
+        network_mode: "bridge"
+        ports:
+            - "32770:80"
+        environment:
+            TZ: "Asia/Jerusalem"
+            PMA_HOST: ${ZEG_IP}
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
