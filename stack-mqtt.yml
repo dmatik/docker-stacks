@@ -1,0 +1,21 @@
+services:
+
+    mosquitto:
+        restart: always
+        hostname: mosquitto
+        container_name: mosquitto
+        image: eclipse-mosquitto:latest
+        environment:
+            TZ: "Asia/Jerusalem"
+            USER: ${MQTT_USER}
+            PASS: ${MQTT_PASS}
+            PUID: ${ZEG_PUID}
+            PGID: ${ZEG_PGID}
+        volumes:
+            - /volume1/docker/mosquitto/data:/mosquitto/data
+            - /volume1/docker/mosquitto/config:/mosquitto/config
+            - /volume1/docker/mosquitto/log:/mosquitto/log
+        network_mode: "bridge"
+        ports:
+            - "1883:1883"
+            - "9001:9001"
