@@ -1,0 +1,19 @@
+services:
+
+    homeassistant:
+        restart: always
+        hostname: homeassistant
+        container_name: homeassistant
+        image: ghcr.io/home-assistant/home-assistant:stable
+        environment:
+            TZ: "Asia/Jerusalem"
+        volumes:
+            - /volume1/docker/homeassistant/config:/config
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /etc/localtime:/etc/localtime:ro
+        network_mode: "host"
+        labels:
+            - com.centurylinklabs.watchtower.enable=false
+        privileged: true
+        devices:
+            - /dev/ttyACM0:/dev/ttyACM0
