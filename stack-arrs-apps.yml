@@ -1,0 +1,70 @@
+services:
+
+    radarr:
+        restart: always
+        hostname: radarr
+        container_name: radarr
+        image: linuxserver/radarr:latest
+        network_mode: "bridge"
+        ports:
+            - "7878:7878"
+        environment:
+            TZ: "Asia/Jerusalem"
+            PUID: ${ZEG_PUID}
+            PGID: ${ZEG_PGID}
+        volumes:
+            #- /volume1/torrent:/torrent
+            - /volume1/data:/data
+            - /volume1/docker/radarr/config:/config
+        
+    sonarr:
+        restart: always
+        hostname: sonarr
+        container_name: sonarr
+        image: linuxserver/sonarr:latest
+        network_mode: "bridge"
+        ports:
+            - "8989:8989"
+            - "9898:9898"
+        environment:
+            TZ: "Asia/Jerusalem"
+            PUID: ${ZEG_PUID}
+            PGID: ${ZEG_PGID}
+        volumes:
+            #- /volume1/torrent:/torrent
+            #- /volume1/video:/video
+            - /volume1/data:/data
+            - /volume1/docker/sonarr/config:/config
+
+    prowlarr:
+        hostname: prowlarr
+        image: lscr.io/linuxserver/prowlarr:latest
+        container_name: prowlarr
+        network_mode: "bridge"
+        ports:
+            - 9696:9696
+        environment:
+            TZ: "Asia/Jerusalem"
+            PUID: ${ZEG_PUID}
+            PGID: ${ZEG_PGID}
+        volumes:
+            - /volume1/docker/prowlarr/config:/config
+        restart: unless-stopped
+
+    bazarr:
+        restart: always
+        hostname: bazarr
+        container_name: bazarr
+        image: linuxserver/bazarr:latest
+        network_mode: "bridge"
+        ports:
+            - "6868:6767"
+        environment:
+            TZ: "Asia/Jerusalem"
+            PUID: ${ZEG_PUID}
+            PGID: ${ZEG_PGID}
+        volumes:
+            - /volume1/docker/bazarr/config:/config
+            #- /volume1/torrent:/torrent
+            #- /volume1/video:/video
+            - /volume1/data:/data
