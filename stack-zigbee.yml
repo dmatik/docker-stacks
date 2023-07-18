@@ -1,0 +1,27 @@
+services:
+
+    z2m_basement:
+        container_name: z2m_basement
+        image: koenkk/zigbee2mqtt
+        restart: unless-stopped
+        volumes:
+          - /volume1/docker/z2m_basement/data:/app/data
+          - /run/udev:/run/udev:ro
+        ports:
+          # Frontend port
+          - 58080:8080
+        environment:
+          - TZ=Asia/Jerusalem
+
+    z2m_living_room:
+        container_name: z2m_living_room
+        image: koenkk/zigbee2mqtt
+        restart: unless-stopped
+        volumes:
+          - /volume1/docker/z2m_living_room/data:/app/data
+          - /run/udev:/run/udev:ro
+        ports:
+          # Frontend port
+          - 58090:8080
+        environment:
+          - TZ=Asia/Jerusalem
