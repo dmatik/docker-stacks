@@ -1,0 +1,36 @@
+services:
+
+    tasmoadmin:
+        restart: always
+        container_name: tasmoadmin
+        hostname: tasmoadmin
+        image: raymondmm/tasmoadmin:latest
+        network_mode: "bridge"
+        ports:
+            - 5555:80
+        environment:
+            TZ: "Asia/Jerusalem"
+        volumes:
+            - /volume1/docker/tasmoadmin/data:/data
+
+
+    tasmobackup:
+        restart: always
+        hostname: tasmobackup
+        container_name: tasmobackup
+        image: danmed/tasmobackupv1
+        ports:
+            - '8259:80'
+        volumes:
+            - /volume1/docker/tasmobackup/data:/var/www/html/data
+        environment:
+            # MYSQL env's are not needed if you are using sqlite
+            #- MYSQL_SERVER=IPADDRESS
+            #- MYSQL_USERNAME=USERNAME
+            #- MYSQL_PASSWORD=PASSWORD
+            # change below to mysql if you don't want to use sqlite
+            # you will need to have a mysql server (set above) with a blank database already created.
+            - DBTYPE=sqlite
+            # if using Mysql remove the data/ from the below line
+            # if using Sqlite the data/ is required!
+            - DBNAME=data/tasmobackup
