@@ -1,0 +1,20 @@
+services:
+
+    jellyfin:
+        hostname: jellyfin
+        container_name: jellyfin
+        image: jellyfin/jellyfin
+        user: ${ZEG_PUID}:${ZEG_PGID}
+        network_mode: "host"
+        restart: "unless-stopped"
+        privileged: true
+        devices:
+            - /dev/dri:/dev/dri
+        environment:
+            PUID: ${ZEG_PUID}
+            PGID: ${ZEG_PGID}
+            TZ: "Asia/Jerusalem"
+        volumes:
+          - /volume1/docker/jellyfin/config:/config
+          - /volume1/docker/jellyfin/cache:/cache
+          - /volume1/data:/data
