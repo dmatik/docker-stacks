@@ -1,0 +1,15 @@
+services:
+
+    bitwarden_server:
+        hostname: bitwarden_server
+        container_name: bitwarden_server
+        image: vaultwarden/server:latest
+        network_mode: "bridge"
+        restart: "always"
+        privileged: true
+        ports:
+            - 5151:80
+        environment:
+            TZ: "Asia/Jerusalem"
+        volumes:
+          - /volume1/docker/bitwarden/data:/data
