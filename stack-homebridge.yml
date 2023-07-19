@@ -1,0 +1,17 @@
+services:
+
+    homebridge:
+        image: oznu/homebridge:latest
+        container_name: homebridge
+        hostname: homebridge
+        restart: always
+        network_mode: host
+        environment:
+            TZ: "Asia/Jerusalem"
+            PGID: ${ZEG_PUID}
+            PUID: ${ZEG_PGID}
+            HOMEBRIDGE_CONFIG_UI: 1
+            HOMEBRIDGE_CONFIG_UI_PORT: 8080
+            DSM_HOSTNAME: "zeg"
+        volumes:
+            - /volume1/docker/homebridge:/homebridge
