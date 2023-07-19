@@ -1,0 +1,16 @@
+services:
+
+    duckrails:
+        image: iridakos/duckrails:latest
+        container_name: duckrails
+        hostname: duckrails
+        network_mode: "bridge"
+        ports:
+            - 48080:80
+        environment:
+            DATABASE_ADAPTER: sqlite3
+            DATABASE_NAME: db/sqlite/production.sqlite3
+            SECRET_KEY_BASE: "${DUCKRAILS_SECRET_KEY_BASE}"
+        restart: unless-stopped
+        volumes:
+            - /volume1/docker/duckrails/db:/opt/duckrails/db/sqlite/
