@@ -1,0 +1,19 @@
+services:
+
+    vscode:
+        image: linuxserver/code-server
+        container_name: vscode
+        hostname: vscode
+        restart: always
+        network_mode: bridge
+        ports:
+          - 8553:8443
+        environment:
+            PUID: ${ZEG_PUID}
+            PGID: ${ZEG_PGID}
+            TZ: "Asia/Jerusalem"
+            PASSWORD: ${VSCODE_PASSWORD} #optional
+            #SUDO_PASSWORD: password #optional
+        volumes:
+            - /volume1/docker/vscode/config:/config
+            - /volume1/docker:/docker
