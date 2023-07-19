@@ -1,0 +1,17 @@
+services:
+
+    watchtower:
+        restart: always
+        hostname: watchtower
+        container_name: watchtower
+        image: containrrr/watchtower:latest
+        network_mode: "bridge"
+        environment:
+            TZ: "Asia/Jerusalem"
+            WATCHTOWER_CLEANUP: "true"
+            WATCHTOWER_SCHEDULE: "0 0 6 * * *"
+            WATCHTOWER_NOTIFICATIONS: "shoutrrr"
+            WATCHTOWER_NOTIFICATION_URL: "telegram://${MY_DOCKER_BOT_TOKEN}@telegram?channels=${TELEGRAM_CHAT_ID}"
+            WATCHTOWER_WARN_ON_HEAD_FAILURE: "never"
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
