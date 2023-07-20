@@ -1,8 +1,8 @@
 services:
 
-    bitwarden_server:
-        hostname: bitwarden_server
-        container_name: bitwarden_server
+    vaultwarden:
+        hostname: vaultwarden
+        container_name: vaultwarden
         image: vaultwarden/server:latest
         network_mode: "bridge"
         restart: "always"
