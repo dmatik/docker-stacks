@@ -1,0 +1,15 @@
+services:
+
+  syncthing:
+    image: syncthing/syncthing
+    container_name: syncthing
+    hostname: syncthing
+    environment:
+      TZ: "Asia/Jerusalem"
+      PUID: ${ZEG_PUID}
+      PGID: ${ZEG_PGID}
+    volumes:
+      - /home/pi/docker/syncthing/config:/config
+      - /home/pi/docker:/docker
+    network_mode: host
+    restart: unless-stopped
