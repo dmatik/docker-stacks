@@ -22,7 +22,7 @@ services:
           - 49100:9001
         environment:
             TZ: "Asia/Jerusalem"
-            LOGGING_LEVEL_COM_DMATIK_OREFALERTS_SERVICE: "INFO"
+            LOGGING_LEVEL_COM_DMATIK_OREFALERTS_SERVICE: "DEBUG"
             CURRENT_ALERT_MOCK: ""
             HISTORY_MOCK: ""
             CURRENT_ALERT_TEST_MODE: ""
