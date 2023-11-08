@@ -1,7 +1,7 @@
 services:
 
     homebridge:
-        image: oznu/homebridge:latest
+        image: homebridge/homebridge:latest
         container_name: homebridge
         hostname: homebridge
         restart: always
