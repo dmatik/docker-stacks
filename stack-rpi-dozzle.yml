@@ -1,5 +1,6 @@
 services:
   dozzle:
+    restart: always
     container_name: dozzle
     hostname: dozzle
     image: amir20/dozzle:latest
