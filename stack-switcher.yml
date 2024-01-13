@@ -1,7 +1,7 @@
 services:
 
     switcher_webapi:
-        image: tomerfi/switcher_webapi:latest
+        image: tomerfi/switcher_webapi:1.2.4
         container_name: switcher_webapi
         hostname: switcher_webapi
         restart: always
@@ -10,4 +10,4 @@ services:
           - 8150:8000
         environment:
             TZ: "Asia/Jerusalem"
-            LOG_LEVEL: "DEBUG"
+            LOG_LEVEL: "INFO"
