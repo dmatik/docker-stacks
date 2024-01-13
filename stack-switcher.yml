@@ -10,4 +10,4 @@ services:
           - 8150:8000
         environment:
             TZ: "Asia/Jerusalem"
-            LOG_LEVEL: "INFO"
+            LOG_LEVEL: "DEBUG"
