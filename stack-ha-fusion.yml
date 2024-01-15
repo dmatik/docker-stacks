@@ -1,0 +1,15 @@
+services:
+
+    ha-fusion:
+        restart: always
+        hostname: ha-fusion
+        container_name: ha-fusion
+        image: ghcr.io/matt8707/ha-fusion
+        environment:
+            TZ: "Asia/Jerusalem"
+            HASS_URL: ${HASS_URL}
+        volumes:
+            - /volume1/docker/ha-fusion/data:/app/data
+        network_mode: "bridge"
+        ports:
+          - "5050:5050"
