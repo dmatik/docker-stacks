@@ -11,3 +11,15 @@ services:
         environment:
             TZ: "Asia/Jerusalem"
             LOG_LEVEL: "INFO"
+
+    switcher_webapi_test:
+        image: tomerfi/switcher_webapi:latest
+        container_name: switcher_webapi_test
+        hostname: switcher_webapi_test
+        restart: unless-stopped
+        network_mode: bridge
+        ports:
+          - 8160:8000
+        environment:
+            TZ: "Asia/Jerusalem"
+            LOG_LEVEL: "DEBUG"
