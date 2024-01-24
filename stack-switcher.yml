@@ -1,7 +1,7 @@
 services:
 
     switcher_webapi:
-        image: tomerfi/switcher_webapi:1.2.6
+        image: tomerfi/switcher_webapi:1.2.4
         container_name: switcher_webapi
         hostname: switcher_webapi
         restart: always
@@ -13,7 +13,7 @@ services:
             LOG_LEVEL: "INFO"
 
     switcher_webapi_test:
-        image: tomerfi/switcher_webapi:1.2.6
+        image: tomerfi/switcher_webapi:1.2.4
         container_name: switcher_webapi_test
         hostname: switcher_webapi_test
         restart: unless-stopped
