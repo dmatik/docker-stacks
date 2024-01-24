@@ -1,7 +1,7 @@
 services:
 
     switcher_webapi:
-        image: tomerfi/switcher_webapi:1.2.4
+        image: tomerfi/switcher_webapi:latest
         container_name: switcher_webapi
         hostname: switcher_webapi
         restart: always
