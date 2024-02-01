@@ -72,24 +72,6 @@ services:
             - /volume1/data:/data
 
 
-    jackett:
-        image: lscr.io/linuxserver/jackett:latest
-        container_name: jackett
-        hostname: jackett
-        environment:
-            TZ: "Asia/Jerusalem"
-            PUID: ${ZEG_PUID}
-            PGID: ${ZEG_PGID}
-            AUTO_UPDATE: "true" #optional
-            #RUN_OPTS: #optional
-        volumes:
-            - /volume1/docker/jackett/config:/config
-            #- /volume1/torrent:/downloads
-            - /volume1/data/torrent:/downloads
-        ports:
-            - "9117:9117"
-        restart: always
-
     flaresolverr:
         image: ghcr.io/flaresolverr/flaresolverr:latest
         container_name: flaresolverr
