@@ -36,6 +36,8 @@ services:
             - /volume1/data:/data
             - /volume1/docker/sonarr/config:/config
 
+
+
     prowlarr:
         hostname: prowlarr
         image: lscr.io/linuxserver/prowlarr:latest
@@ -68,3 +70,22 @@ services:
             #- /volume1/torrent:/torrent
             #- /volume1/video:/video
             - /volume1/data:/data
+
+
+    jackett:
+        image: lscr.io/linuxserver/jackett:latest
+        container_name: jackett
+        hostname: jackett
+        environment:
+            TZ: "Asia/Jerusalem"
+            PUID: ${ZEG_PUID}
+            PGID: ${ZEG_PGID}
+            AUTO_UPDATE: "true" #optional
+            #RUN_OPTS: #optional
+        volumes:
+            - /volume1/docker/jackett/config:/config
+            #- /volume1/torrent:/downloads
+            - /volume1/data/torrent:/downloads
+        ports:
+            - "9117:9117"
+        restart: always
