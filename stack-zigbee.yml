@@ -25,3 +25,16 @@ services:
           - 58090:8080
         environment:
           - TZ=Asia/Jerusalem
+
+    z2m_floor2:
+        container_name: z2m_floor2
+        image: koenkk/zigbee2mqtt
+        restart: unless-stopped
+        volumes:
+          - /volume1/docker/z2m_floor2/data:/app/data
+          - /run/udev:/run/udev:ro
+        ports:
+          # Frontend port
+          - 58070:8080
+        environment:
+          - TZ=Asia/Jerusalem
