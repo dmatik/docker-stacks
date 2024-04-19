@@ -23,4 +23,4 @@ services:
       - "8555:8555/tcp" # WebRTC over tcp
       - "8555:8555/udp" # WebRTC over udp
     environment:
-      FRIGATE_RTSP_PASSWORD: "FDimka6939030e"
+      FRIGATE_RTSP_PASSWORD: ${FRIGATE_PASS}
