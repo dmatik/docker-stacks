@@ -23,5 +23,10 @@ services:
       - "8666:8555/tcp" # WebRTC over tcp
       - "8666:8555/udp" # WebRTC over udp
     environment:
+      TZ: "Asia/Jerusalem"
       FRIGATE_RTSP_PASSWORD: ${FRIGATE_PASS}
+      PATH: "/usr/lib/btbn-ffmpeg/bin:/usr/local/go2rtc/bin:/usr/local/nginx/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: "compute,video,utility"
+      S6_LOGGING_SCRIPT: "T 1 n0 s10000000 T"
       #LIBVA_DRIVER_NAME: i965
