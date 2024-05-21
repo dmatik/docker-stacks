@@ -24,4 +24,4 @@ services:
       - "8666:8555/udp" # WebRTC over udp
     environment:
       FRIGATE_RTSP_PASSWORD: ${FRIGATE_PASS}
-      LIBVA_DRIVER_NAME: i965
+      #LIBVA_DRIVER_NAME: i965
