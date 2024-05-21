@@ -18,7 +18,7 @@ services:
         tmpfs:
           size: 1000000000
     ports:
-      - "1935:1935/tcp"
+      - "1945:1935/tcp"
       - "5000:5000"
       - "8664:8554" # RTSP feeds
       - "8666:8555/tcp" # WebRTC over tcp
