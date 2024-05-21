@@ -30,4 +30,4 @@ services:
       NVIDIA_VISIBLE_DEVICES: all
       NVIDIA_DRIVER_CAPABILITIES: "compute,video,utility"
       S6_LOGGING_SCRIPT: "T 1 n0 s10000000 T"
-      #LIBVA_DRIVER_NAME: i965
+      LIBVA_DRIVER_NAME: i965
