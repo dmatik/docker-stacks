@@ -1,0 +1,15 @@
+version: '3'
+services:
+  esphome:
+    container_name: esphome
+    hostname: esphome
+    image: ghcr.io/esphome/esphome
+    volumes:
+      - /volume1/docker/esphome/config:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    privileged: true
+    network_mode: host
+    environment:
+      - USERNAME=esphome
+      - PASSWORD=Dimka6939030
