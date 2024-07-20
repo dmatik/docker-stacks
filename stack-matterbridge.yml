@@ -1,0 +1,10 @@
+services:
+  matterbridge:
+    container_name: matterbridge
+    hostname: matterbridge
+    image: luligu/matterbridge:latest
+    network_mode: host
+    restart: always
+    volumes:
+      - "/volume1/docker/matterbridge/Matterbridge:/root/Matterbridge" # Mounts the Matterbridge plugin directory
+      - "/volume1/docker/matterbridge/.matterbridge:/root/.matterbridge" # Mounts the Matterbridge storage directory
