@@ -15,5 +15,5 @@ services:
         labels:
             - com.centurylinklabs.watchtower.enable=false
         privileged: true
-        devices:
-            - /dev/ttyACM0:/dev/ttyACM0
+        # devices:
+        #     - /dev/ttyACM0:/dev/ttyACM0
