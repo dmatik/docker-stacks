@@ -1,6 +1,0 @@
-services:
-  hello-world:
-    hostname: hello-world
-    container_name: hello-world
-    restart: unless-stopped
-    image: hello-world
