@@ -42,22 +42,22 @@ services:
             - /volume1/docker/minecraft_survival/data:/data
 
 
-    minecraft-pockedrock:
-        image: itzg/minecraft-bedrock-server:latest
-        container_name: minecraft-pockedrock
-        restart: "unless-stopped"
-        network_mode: "bridge"
-        ports:
-            - 19332:19132/udp
-        environment:
-            TZ: "Asia/Jerusalem"
-            EULA: "TRUE"
-            GAMEMODE: "survival"
-            DIFFICULTY: "peaceful"
-            MAX_PLAYERS: "30"
-            SERVER_NAME: "Trosmans Pockedrock"
-            OPS: "${MC_DMATIK_ID},${MC_RONEN_ID},${MC_KFIR_ID},${MC_ILAN_ID},${MC_SASHA_ID}"
-            ALLOW_CHEATS: "true"
-            SERVER_AUTHORITATIVE_MOVEMENT: "server-auth"
-        volumes:
-            - /volume1/docker/minecraft_pockedrock/data:/data
+    # minecraft-pockedrock:
+    #     image: itzg/minecraft-bedrock-server:latest
+    #     container_name: minecraft-pockedrock
+    #     restart: "unless-stopped"
+    #     network_mode: "bridge"
+    #     ports:
+    #         - 19332:19132/udp
+    #     environment:
+    #         TZ: "Asia/Jerusalem"
+    #         EULA: "TRUE"
+    #         GAMEMODE: "survival"
+    #         DIFFICULTY: "peaceful"
+    #         MAX_PLAYERS: "30"
+    #         SERVER_NAME: "Trosmans Pockedrock"
+    #         OPS: "${MC_DMATIK_ID},${MC_RONEN_ID},${MC_KFIR_ID},${MC_ILAN_ID},${MC_SASHA_ID}"
+    #         ALLOW_CHEATS: "true"
+    #         SERVER_AUTHORITATIVE_MOVEMENT: "server-auth"
+    #     volumes:
+    #         - /volume1/docker/minecraft_pockedrock/data:/data
