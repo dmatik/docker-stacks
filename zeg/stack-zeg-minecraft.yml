@@ -1,8 +1,8 @@
 services:
 
-    minecraft-server:
+    minecraft-creative:
         image: itzg/minecraft-bedrock-server:latest
-        container_name: minecraft-server
+        container_name: minecraft-creative
         restart: "unless-stopped"
         network_mode: "bridge"
         ports:
