@@ -1,0 +1,18 @@
+services:
+  syncthing:
+    image: lscr.io/linuxserver/syncthing:latest
+    container_name: syncthing
+    hostname: syncthing
+    environment:
+      - PUID=${RPI_PUID}
+      - PGID=${RPI_PGID}
+      - TZ=Asia/Jerusalem
+    volumes:
+      - /home/dmatik/docker/syncthing/config:/config
+      - /home/dmatik/docker:/docker-data
+    ports:
+      - 8384:8384
+      - 22000:22000/tcp
+      - 22000:22000/udp
+      - 21027:21027/udp
+    restart: unless-stopped
