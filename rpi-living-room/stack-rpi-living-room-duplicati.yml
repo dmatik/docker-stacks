@@ -3,8 +3,8 @@ services:
       image: lscr.io/linuxserver/duplicati:latest
       container_name: duplicati
       environment:
-        - PUID=${ZEG_PUID}
-        - PGID=${ZEG_PGID}        
+        - PUID=${RPI_PUID}
+        - PGID=${RPI_PGID}        
         - TZ=Asia/Jerusalem
       volumes:
         - /home/dmatik/docker/duplicati/config:/config
