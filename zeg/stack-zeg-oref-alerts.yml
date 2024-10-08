@@ -25,6 +25,6 @@ services:
             LOGGING_LEVEL_COM_DMATIK_OREFALERTS_SERVICE: "DEBUG"
             CURRENT_ALERT_MOCK: ""
             HISTORY_MOCK: ""
-            CURRENT_ALERT_TEST_MODE: ""
+            CURRENT_ALERT_TEST_MODE: "TRUE"
             CURRENT_ALERT_TEST_MODE_LOC: "אשדוד"
             HISTORY_TEST_MODE: ""
