@@ -27,4 +27,4 @@ services:
             HISTORY_MOCK: ""
             CURRENT_ALERT_TEST_MODE: ""
             CURRENT_ALERT_TEST_MODE_LOC: "אשדוד"
-            HISTORY_TEST_MODE: ""
+            HISTORY_TEST_MODE: "TRUE"
