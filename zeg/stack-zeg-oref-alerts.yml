@@ -12,7 +12,7 @@ services:
             TZ: "Asia/Jerusalem"
             LOGGING_LEVEL_COM_DMATIK_OREFALERTS_SERVICE: "INFO"
             CURRENT_ALERT_TEST_MODE: "TRUE"
-            CURRENT_ALERT_TEST_MODE_LOC: "אשדוד"            
+            CURRENT_ALERT_TEST_MODE_LOC: "אשדוד - א,ב,ד,ה"            
 
     oref-alerts-dev:
         image: dmatik/oref-alerts:v1.0.11-dev
