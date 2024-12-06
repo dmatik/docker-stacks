@@ -15,7 +15,7 @@ services:
             CURRENT_ALERT_TEST_MODE_LOC: "אשדוד - א,ב,ד,ה"            
 
     oref-alerts-dev:
-        image: dmatik/oref-alerts:v1.0.11-dev
+        image: dmatik/oref-alerts:v1.0.12-dev
         container_name: oref-alerts-dev
         hostname: oref-alerts-dev
         restart: unless-stopped
