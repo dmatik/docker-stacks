@@ -12,6 +12,8 @@ services:
           - 58080:8080
         environment:
           - TZ=Asia/Jerusalem
+        labels:
+          - com.centurylinklabs.watchtower.monitor-only=true          
 
     # z2m_living_room:
     #     container_name: z2m_living_room
