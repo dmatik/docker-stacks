@@ -15,3 +15,5 @@ services:
         devices:
           # Make sure this matched your adapter location
           - /dev/serial/by-id/usb-Nabu_Casa_Home_Assistant_Connect_ZBT-1_1628a37950eced11aeff0f1d62c613ac-if00-port0:/dev/ttyUSB0
+        labels:
+          - com.centurylinklabs.watchtower.monitor-only=true          
