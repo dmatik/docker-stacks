@@ -4,7 +4,7 @@ services:
         image: tomerfi/switcher_webapi:latest
         container_name: switcher_webapi
         hostname: switcher_webapi
-        restart: always
+        restart: unless-stopped
         network_mode: bridge
         ports:
           - 8150:8000
