@@ -15,3 +15,5 @@ services:
             DSM_HOSTNAME: "zeg"
         volumes:
             - /volume1/docker/homebridge:/homebridge
+        labels:
+          - com.centurylinklabs.watchtower.monitor-only=true  
