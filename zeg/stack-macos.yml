@@ -3,7 +3,7 @@ services:
     image: dockurr/macos
     container_name: macos
     environment:
-      VERSION: "12"
+      VERSION: "13"
       RAM_SIZE: "256MB"
     devices:
       - /dev/kvm
