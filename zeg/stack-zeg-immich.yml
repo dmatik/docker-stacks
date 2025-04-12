@@ -1,0 +1,74 @@
+services:
+  immich-redis:
+    image: redis
+    container_name: Immich-REDIS
+    hostname: immich-redis
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping || exit 1"]
+    user: ${ZEG_PUID}:${ZEG_PGID}
+    environment:
+      - TZ=Asia/Jerusalem
+    volumes:
+      - /volume1/docker/immich/redis:/data:rw
+    restart: on-failure:5
+
+  immich-db:
+    image: tensorchord/pgvecto-rs:pg16-v0.2.0
+    container_name: Immich-DB
+    hostname: immich-db
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "immich", "-U", "immichuser"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - /volume1/docker/immich/db:/var/lib/postgresql/data:rw
+    environment:
+      - TZ=Asia/Jerusalem
+      - POSTGRES_DB=immich
+      - POSTGRES_USER=immichuser
+      - POSTGRES_PASSWORD=immichpw
+    restart: on-failure:5
+
+  immich-server:
+    image: ghcr.io/immich-app/immich-server:release
+    container_name: Immich-SERVER
+    hostname: immich-server
+    user: ${ZEG_PUID}:${ZEG_PGID}
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=Asia/Jerusalem
+    ports:
+      - 8212:2283
+    volumes:
+      - /volume1/docker/immich/upload:/usr/src/app/upload:rw
+    restart: on-failure:5
+    depends_on:
+      immich-redis:
+        condition: service_healthy
+      immich-db:
+        condition: service_started
+
+  immich-machine-learning:
+    image: ghcr.io/immich-app/immich-machine-learning:release
+    container_name: Immich-LEARNING
+    hostname: immich-machine-learning
+    user: ${ZEG_PUID}:${ZEG_PGID}
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /volume1/docker/immich/upload:/usr/src/app/upload:rw
+      - /volume1/docker/immich/cache:/cache:rw
+      - /volume1/docker/immich/matplotlib:/matplotlib:rw
+    environment:
+      - TZ=Asia/Jerusalem
+      - MPLCONFIGDIR=/matplotlib
+    restart: on-failure:5
+    depends_on:
+      immich-db:
+        condition: service_started
