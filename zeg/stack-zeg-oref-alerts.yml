@@ -12,7 +12,12 @@ services:
             TZ: "Asia/Jerusalem"
             LOGGING_LEVEL_COM_DMATIK_OREFALERTS_SERVICE: "INFO"
             CURRENT_ALERT_TEST_MODE: "FALSE"
-            CURRENT_ALERT_TEST_MODE_LOC: "אשדוד - א,ב,ד,ה"            
+            CURRENT_ALERT_TEST_MODE_LOC: "אשדוד - א,ב,ד,ה"
+        logging:
+            driver: "json-file"
+            options:
+                max-size: "100m"
+                max-file: "3"
 
     oref-alerts-dev:
         image: dmatik/oref-alerts:v1.0.12-dev
