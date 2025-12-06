@@ -1,0 +1,15 @@
+services:
+  prunemate:
+    image: anoniemerd/prunemate:latest
+    container_name: prunemate
+    hostname: prunemate
+    ports:
+      - "7676:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /volume1/docker/prunemate/logs:/var/log
+      - /volume1/docker/prunemate/config:/config
+    environment:
+      - PRUNEMATE_TZ=Asia/Jerusalem
+      - PRUNEMATE_TIME_24H=true #false for 12-Hour format (AM/PM)
+    restart: unless-stopped
