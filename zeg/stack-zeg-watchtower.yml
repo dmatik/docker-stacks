@@ -11,7 +11,9 @@ services:
             WATCHTOWER_CLEANUP: "true"
             WATCHTOWER_SCHEDULE: "0 0 6 * * *"
             WATCHTOWER_NOTIFICATIONS: "shoutrrr"
-            WATCHTOWER_NOTIFICATION_URL: "telegram://${MY_DOCKER_BOT_TOKEN}@telegram?channels=${TELEGRAM_CHAT_ID}"
+            WATCHTOWER_NOTIFICATION_URL: >
+                "telegram://${MY_DOCKER_BOT_TOKEN}@telegram?channels=${TELEGRAM_CHAT_ID}"
+                "gotify://${GOTIFY_HOST}/${GOTIFY_TOKEN}"
             WATCHTOWER_WARN_ON_HEAD_FAILURE: "never"
             WATCHTOWER_NOTIFICATION_TITLE_TAG: "ZEG"
         volumes:
