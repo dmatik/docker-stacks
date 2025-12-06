@@ -7,7 +7,9 @@ services:
       - serve
     environment:
       - TZ=Asia/Jerusalem    # optional: set desired timezone
-    user: ${ZEG_PUID}:${ZEG_PGID} # optional: replace with your own user/group or uid/gid
+      - PUID=${ZEG_PUID}
+      - PGID=${ZEG_PGID}
+    user: '${ZEG_PUID}:${ZEG_PGID}' # optional: replace with your own user/group or uid/gid
     volumes:
       - /volume1/docker/ntfy/cache:/var/cache/ntfy
       - /volume1/docker/ntfy/config:/etc/ntfy
