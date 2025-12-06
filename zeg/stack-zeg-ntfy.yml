@@ -11,5 +11,5 @@ services:
       - /volume1/docker/ntfy/cache:/var/cache/ntfy
       - /volume1/docker/ntfy/config:/etc/ntfy
     ports:
-      - 8182:80
+      - 8082:80
     restart: unless-stopped
