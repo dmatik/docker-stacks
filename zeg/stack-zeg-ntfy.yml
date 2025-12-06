@@ -1,0 +1,16 @@
+services:
+  ntfy:
+    image: binwiederhier/ntfy:latest
+    container_name: ntfy
+    hostname: ntfy
+    command:
+      - serve
+    environment:
+      - TZ=Asia/Jerusalem    # optional: set desired timezone
+    user: ${ZEG_PUID}:${ZEG_PGID} # optional: replace with your own user/group or uid/gid
+    volumes:
+      - /volume1/docker/ntfy/cache:/var/cache/ntfy
+      - /volume1/docker/ntfy/config:/etc/ntfy
+    ports:
+      - 8082:80
+    restart: unless-stopped
