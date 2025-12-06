@@ -1,0 +1,12 @@
+services:
+  gotify:
+    image: gotify/server:latest
+    container_name: gotify
+    hostname: gotify
+    environment:
+      - TZ=Asia/Jerusalem
+    volumes:
+      - /volume1/docker/gotify/data:/app/data
+    ports:
+      - 8083:80
+    restart: unless-stopped
