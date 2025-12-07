@@ -23,9 +23,6 @@ services:
                       {{- range .Updated}}
                 - {{.Name}} ({{.ImageName}}): {{.CurrentImageID.ShortID}} updated to {{.LatestImageID.ShortID}}
                       {{- end -}}
-                      {{- range .Fresh}}
-                - {{.Name}} ({{.ImageName}}): {{.State}}
-                      {{- end -}}
                       {{- range .Skipped}}
                 - {{.Name}} ({{.ImageName}}): {{.State}}: {{.Error}}
                       {{- end -}}
