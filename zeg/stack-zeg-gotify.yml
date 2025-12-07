@@ -12,15 +12,15 @@ services:
     restart: unless-stopped
 
 
-#  igotify:
-#    container_name: igotify
-#    hostname: igotify
-#    image: ghcr.io/androidseb25/igotify-notification-assist:latest
-#    restart: unless-stopped
-#    ports:
-#      - "8681:8080"
-#    volumes:
-#      - /volume1/docker/igotify/data:/app/data
-#    environment:
-#      - TZ=Asia/Jerusalem
-#      - GOTIFY_URLS='http://10.0.0.30:8680'
+  igotify:
+    container_name: igotify
+    hostname: igotify
+    image: ghcr.io/androidseb25/igotify-notification-assist:latest
+    restart: unless-stopped
+    ports:
+      - "8681:8080"
+    volumes:
+      - /volume1/docker/igotify/data:/app/data
+    environment:
+      - TZ=Asia/Jerusalem
+      - GOTIFY_URLS='http://10.0.0.30:8680'
