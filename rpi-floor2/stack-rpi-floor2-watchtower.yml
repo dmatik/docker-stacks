@@ -11,6 +11,7 @@ services:
             WATCHTOWER_CLEANUP: "true"
             WATCHTOWER_SCHEDULE: "0 0 5 * * *"
             WATCHTOWER_NOTIFICATIONS: "shoutrrr"
+            WATCHTOWER_NOTIFICATION_REPORT: "true"
             WATCHTOWER_NOTIFICATION_URL: >
                 telegram://${MY_DOCKER_BOT_TOKEN}@telegram?channels=${TELEGRAM_CHAT_ID}
             WATCHTOWER_NOTIFICATION_TEMPLATE: |
