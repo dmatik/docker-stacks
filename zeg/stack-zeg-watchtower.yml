@@ -20,13 +20,13 @@ services:
                     {{- if ( or .Updated .Failed .Skipped ) -}}
                 {{len .Scanned}} Scanned, {{len .Updated}} Updated, {{len .Failed}} Failed
                       {{- range .Updated}}
-                - {{.Name}} ({{.ImageName}}): {{.CurrentImageID.ShortID}} updated to {{.LatestImageID.ShortID}}
+                - {{.Name}}
                       {{- end -}}
                       {{- range .Skipped}}
-                - {{.Name}} ({{.ImageName}}): {{.State}}: {{.Error}}
+                - {{.Name}}: {{.State}}: {{.Error}}
                       {{- end -}}
                       {{- range .Failed}}
-                - {{.Name}} ({{.ImageName}}): {{.State}}: {{.Error}}
+                - {{.Name}}: {{.State}}: {{.Error}}
                       {{- end -}}
                     {{- end -}}
                   {{- end -}}
