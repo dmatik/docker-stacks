@@ -13,7 +13,25 @@ services:
             WATCHTOWER_NOTIFICATIONS: "shoutrrr"
             WATCHTOWER_NOTIFICATION_URL: >
                 telegram://${MY_DOCKER_BOT_TOKEN}@telegram?channels=${TELEGRAM_CHAT_ID}
-                gotify://${GOTIFY_HOST}/${GOTIFY_TOKEN}
+            WATCHTOWER_NOTIFICATION_TEMPLATE: |
+                {{- if .Report -}}
+                  {{- with .Report -}}
+                    {{- if ( or .Updated .Failed .Skipped ) -}}
+                {{len .Scanned}} Scanned, {{len .Updated}} Updated, {{len .Failed}} Failed
+                      {{- range .Updated}}
+                - {{.Name}}
+                      {{- end -}}
+                      {{- range .Skipped}}
+                - {{.Name}}: {{.State}}: {{.Error}}
+                      {{- end -}}
+                      {{- range .Failed}}
+                - {{.Name}}: {{.State}}: {{.Error}}
+                      {{- end -}}
+                    {{- end -}}
+                  {{- end -}}
+                {{- else -}}
+                  {{range .Entries -}}{{.Message}}{{"\n"}}{{- end -}}
+                {{- end -}} 
             WATCHTOWER_WARN_ON_HEAD_FAILURE: "never"
             WATCHTOWER_NOTIFICATION_TITLE_TAG: "RPi Living Room"
         volumes:
