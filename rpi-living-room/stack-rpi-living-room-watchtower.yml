@@ -35,5 +35,6 @@ services:
                 {{- end -}} 
             WATCHTOWER_WARN_ON_HEAD_FAILURE: "never"
             WATCHTOWER_NOTIFICATION_TITLE_TAG: "RPi Living Room"
+            DOCKER_API_VERSION: "1.52"
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
