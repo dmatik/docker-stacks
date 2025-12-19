@@ -9,9 +9,6 @@ services:
       - NETWORKS=1
       - VOLUMES=1
       - POST=1          # Required for prune operations
-      - TIMEOUT_CLIENT=30m
-      - TIMEOUT_SERVER=30m
-      - TIMEOUT_CONNECT=5s
     ports:
       - "2375:2375"
     volumes:
