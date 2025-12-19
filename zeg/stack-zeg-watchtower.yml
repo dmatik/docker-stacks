@@ -4,7 +4,7 @@ services:
         restart: always
         hostname: watchtower
         container_name: watchtower
-        image: containrrr/watchtower:latest
+        image: nickfedor/watchtower:latest
         network_mode: "bridge"
         environment:
             TZ: "Asia/Jerusalem"
