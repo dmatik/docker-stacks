@@ -4,7 +4,7 @@ services:
         restart: always
         hostname: watchtower
         container_name: watchtower
-        image: containrrr/watchtower:latest
+        image: nickfedor/watchtower:latest
         network_mode: "bridge"
         environment:
             TZ: "Asia/Jerusalem"
@@ -35,6 +35,5 @@ services:
                 {{- end -}} 
             WATCHTOWER_WARN_ON_HEAD_FAILURE: "never"
             WATCHTOWER_NOTIFICATION_TITLE_TAG: "RPi Floor 2"
-            DOCKER_API_VERSION: "1.52"
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
