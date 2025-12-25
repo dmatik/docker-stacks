@@ -1,0 +1,15 @@
+services:
+
+    bitwarden:
+        hostname: bitwarden
+        container_name: bitwarden
+        image: ghcr.io/bitwarden/lite:latest
+        network_mode: "bridge"
+        restart: "always"
+        ports:
+            - 9891:8080
+        environment:
+            TZ: "Asia/Jerusalem"
+            BW_DB_PROVIDER: "sqlite"
+        volumes:
+          - /volume1/docker/bitwardenlite/data:/etc/bitwarden
