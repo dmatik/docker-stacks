@@ -4,6 +4,8 @@ services:
         hostname: bitwarden
         container_name: bitwarden
         image: ghcr.io/bitwarden/lite:latest
+        security_opt:
+          - no-new-privileges:true
         network_mode: "bridge"
         restart: "always"
         ports:
@@ -14,5 +16,17 @@ services:
             BW_DOMAIN: ${BW_LITE_DOMAIN}
             BW_INSTALLATION_ID: ${BW_LITE_INSTALLATION_ID}
             BW_INSTALLATION_KEY: ${BW_LITE_INSTALLATION_KEY}
+            UID: ${BW_LITE_UID}
+            GID: ${BW_LITE_GID}
+            BW_ENABLE_ADMIN: "true"
+            globalSettings__logDirectory: "/etc/bitwarden/logs"
+            adminSettings__admins: ${BW_LITE_GMAIL_ADDRESS}
+            globalSettings__disableUserRegistration: "true"
+            globalSettings__mail__replyToEmail: ${BW_LITE_GMAIL_ADDRESS}
+            globalSettings__mail__smtp__host: "smtp.gmail.com"
+            globalSettings__mail__smtp__ssl: "false"
+            globalSettings__mail__smtp__port: "587"
+            globalSettings__mail__smtp__username: ${BW_LITE_GMAIL_ADDRESS}
+            globalSettings__mail__smtp__password: ${BW_LITE_GMAIL_PASS}
         volumes:
           - /volume1/docker/bitwardenlite/data:/etc/bitwarden
