@@ -11,5 +11,8 @@ services:
             - 5151:80
         environment:
             TZ: "Asia/Jerusalem"
+            ADMIN_TOKEN: ${VAULTWARDEN_ADMIN_TOKEN}
+            SIGNUPS_ALLOWED: "false"
+            DOMAIN: ${VAULTWARDEN_DOMAIN}
         volumes:
           - /volume1/docker/bitwarden/data:/data
