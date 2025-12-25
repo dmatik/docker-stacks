@@ -11,5 +11,8 @@ services:
         environment:
             TZ: "Asia/Jerusalem"
             BW_DB_PROVIDER: "sqlite"
+            BW_DOMAIN: ${BW_LITE_DOMAIN}
+            BW_INSTALLATION_ID: ${BW_LITE_INSTALLATION_ID}
+            BW_INSTALLATION_KEY: ${BW_LITE_INSTALLATION_KEY}
         volumes:
           - /volume1/docker/bitwardenlite/data:/etc/bitwarden
