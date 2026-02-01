@@ -1,0 +1,14 @@
+services:
+
+    class_attend:
+        restart: always
+        hostname: class_attend
+        container_name: class_attend
+        image: class_attend-app:latest
+        network_mode: "bridge"
+        ports:
+            - "5173:5173"
+        environment:
+            TZ: "Asia/Jerusalem"
+        volumes:
+            - /volume1/docker/class_attend/data:/app/data
