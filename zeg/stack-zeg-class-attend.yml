@@ -4,7 +4,7 @@ services:
         restart: always
         hostname: class_attend
         container_name: class_attend
-        image: class_attend-app:latest
+        image: dmatik/class-attend:latest
         network_mode: "bridge"
         ports:
             - "5173:5173"
@@ -12,5 +12,5 @@ services:
             TZ: "Asia/Jerusalem"
         volumes:
             - /volume1/docker/class_attend/data:/app/data
-        labels:
-            - com.centurylinklabs.watchtower.enable=false            
+        #labels:
+        #    - com.centurylinklabs.watchtower.enable=false            
