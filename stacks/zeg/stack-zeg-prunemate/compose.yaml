@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   prunemate:
     image: anoniemerd/prunemate:latest
