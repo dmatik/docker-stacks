@@ -1,7 +1,7 @@
 services:
 
     radarr:
-        restart: always
+        restart: unless-stopped
         hostname: radarr
         container_name: radarr
         image: linuxserver/radarr:latest
@@ -18,7 +18,7 @@ services:
             - /volume1/docker/radarr/config:/config
         
     sonarr:
-        restart: always
+        restart: unless-stopped
         hostname: sonarr
         container_name: sonarr
         image: linuxserver/sonarr:latest
@@ -36,8 +36,6 @@ services:
             - /volume1/data:/data
             - /volume1/docker/sonarr/config:/config
 
-
-
     prowlarr:
         hostname: prowlarr
         image: lscr.io/linuxserver/prowlarr:latest
@@ -54,7 +52,7 @@ services:
         restart: unless-stopped
 
     bazarr:
-        restart: always
+        restart: unless-stopped
         hostname: bazarr
         container_name: bazarr
         image: linuxserver/bazarr:latest
@@ -71,7 +69,6 @@ services:
             #- /volume1/video:/video
             - /volume1/data:/data
 
-
     flaresolverr:
         image: ghcr.io/flaresolverr/flaresolverr:latest
         container_name: flaresolverr
@@ -81,4 +78,4 @@ services:
             LOG_LEVEL: "info"
         ports:
             - "8191:8191"
-        restart: always
+        restart: unless-stopped
