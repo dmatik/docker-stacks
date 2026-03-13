@@ -38,9 +38,6 @@ services:
                   {{range .Entries -}}{{.Message}}{{"\n"}}{{- end -}}
                 {{- end -}} 
             WATCHTOWER_WARN_ON_HEAD_FAILURE: "never"
-            WATCHTOWER_NOTIFICATION_TITLE_TAG: "RPi Living Room"
-            WATCHTOWER_HTTP_API_TOKEN: ${WATCHTOWER_HTTP_API_TOKEN}
-            WATCHTOWER_HTTP_API_UPDATE: "true"
-            WATCHTOWER_HTTP_API_PERIODIC_POLLS: "true"            
+            WATCHTOWER_NOTIFICATION_TITLE_TAG: "RPi Living Room"         
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
