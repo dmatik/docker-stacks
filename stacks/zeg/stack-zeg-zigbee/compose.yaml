@@ -14,7 +14,6 @@ services:
           - TZ=Asia/Jerusalem
         labels:
           - com.centurylinklabs.watchtower.monitor-only=true
-          - com.centurylinklabs.watchtower.scope=z2m-basement-manual-update
 
     # z2m_living_room:
     #     container_name: z2m_living_room

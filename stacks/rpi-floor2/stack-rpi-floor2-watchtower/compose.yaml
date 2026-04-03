@@ -4,14 +4,11 @@ services:
         restart: always
         hostname: watchtower
         container_name: watchtower
-        image: nickfedor/watchtower:latest
-        network_mode: "bridge"
-        ports:
-            - "8585:8080"         
+        image: nickfedor/watchtower:latest      
         environment:
             TZ: "Asia/Jerusalem"
             WATCHTOWER_CLEANUP: "true"
-            WATCHTOWER_SCHEDULE: "0 0 3 * * *"
+            WATCHTOWER_SCHEDULE: "0 20 3 * * *"
             WATCHTOWER_NOTIFICATIONS: "shoutrrr"
             WATCHTOWER_NOTIFICATION_REPORT: "true"
             WATCHTOWER_NOTIFICATION_URL: >
@@ -20,11 +17,18 @@ services:
                 {{- if .Report -}}
                   {{- with .Report -}}
                     {{- if ( or .Updated .Failed .Skipped ) -}}
+                {{len .Scanned}} Scanned
                       {{- if .Updated -}}
-                {{len .Scanned}} Scanned, {{len .Updated}} Updated
+                , {{len .Updated}} Updated
                       {{- end -}}
-                      {{- if ( or .Failed .Skipped ) -}}
-                {{len .Skipped}} Skipped, {{len .Failed}} Failed
+                      {{- if ( .Failed ) -}}
+                , {{len .Failed}} Failed
+                      {{- end -}}
+                      {{- if ( or .Skipped ) -}}
+                , {{len .Skipped}} Skipped
+                      {{- end -}}					  
+                      {{- range .Updated}}
+                - {{.Name}} updated
                       {{- end -}}
                       {{- range .Skipped}}
                 - {{.Name}}: {{.State}}: {{.Error}}
@@ -36,8 +40,8 @@ services:
                   {{- end -}}
                 {{- else -}}
                   {{range .Entries -}}{{.Message}}{{"\n"}}{{- end -}}
-                {{- end -}} 
+                {{- end -}}
             WATCHTOWER_WARN_ON_HEAD_FAILURE: "never"
-            WATCHTOWER_NOTIFICATION_TITLE_TAG: "RPi Floor 2"         
+            WATCHTOWER_NOTIFICATION_TITLE_TAG: "RPi Floor 2"          
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
