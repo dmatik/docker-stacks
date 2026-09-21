@@ -1,0 +1,43 @@
+services:
+
+    minecraft-server:
+            image: itzg/minecraft-server:latest
+            container_name: minecraft-server
+            restart: "unless-stopped"
+            network_mode: "bridge"
+            tty: true
+            stdin_open: true
+            ports:
+                - 25565:25565
+            environment:
+                TZ: "Asia/Jerusalem"
+                EULA: "TRUE"
+                TYPE: "PAPER"                    # <--- Optimized server engine
+                #MEMORY: "4G"                     # <--- 3G to 4G depending on your NAS RAM
+                INIT_MEMORY: "1500M"             # Starts lean (~1.5 GB) at idle
+                MAX_MEMORY: "4G"                 # Allowed to expand up to 4 GB under player load
+                USE_AIKAR_FLAGS: "true"            # <--- CRITICAL: Highly tuned G1GC flags for Minecraft
+                #MODRINTH_PROJECTS: "chunky"
+                #MODRINTH_PROJECTS: "tradecycle"
+                #VIEW_DISTANCE: "7"               # <--- Reduces chunk load significantly
+                #SIMULATION_DISTANCE: "5"         # <--- Keeps mob AI ticks local to player                
+                DIFFICULTY: "2"
+                MAX_PLAYERS: "10"
+                SERVER_NAME: "Trosman"
+                LEVEL: "Trosman-PAPER"
+                MOTD: "§x§3§8§b§d§f§8§l✦§x§3§d§c§0§f§8§l Trosman§x§a§0§f§0§f§c§l §x§a§5§f§3§f§c§l✦\n§rSurvival World"
+                
+                # Native Minecraft Pausing (Minecraft 1.21.2+)
+                ENABLE_AUTOPAUSE: "FALSE"        # Turn off legacy Docker autopause
+                PAUSE_WHEN_EMPTY_SECONDS: "300"  # Native pause after 5 minutes empty
+
+                OPS: |-
+                  ${DMATIK_UUID}
+            volumes:
+                - /home/khadas/docker/minecraft-server/data:/data
+            deploy:
+                resources:
+                  limits:
+                    memory: 6G
+                  reservations:
+                    memory: 2G

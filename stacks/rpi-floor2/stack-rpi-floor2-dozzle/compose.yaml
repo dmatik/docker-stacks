@@ -9,3 +9,4 @@ services:
       - 9999:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - /home/dmatik/docker/dozzle/data:/data
