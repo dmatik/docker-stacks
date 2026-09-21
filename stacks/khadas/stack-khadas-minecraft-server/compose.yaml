@@ -9,6 +9,7 @@ services:
             stdin_open: true
             ports:
                 - 25565:25565
+                - 19132:19132/udp   # Bedrock client port
             environment:
                 TZ: "Asia/Jerusalem"
                 EULA: "TRUE"
@@ -19,6 +20,9 @@ services:
                 USE_AIKAR_FLAGS: "true"            # <--- CRITICAL: Highly tuned G1GC flags for Minecraft
                 #MODRINTH_PROJECTS: "chunky"
                 #MODRINTH_PROJECTS: "tradecycle"
+                PLUGINS: |
+                    https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot
+                    https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot
                 #VIEW_DISTANCE: "7"               # <--- Reduces chunk load significantly
                 #SIMULATION_DISTANCE: "5"         # <--- Keeps mob AI ticks local to player                
                 DIFFICULTY: "2"
@@ -33,6 +37,7 @@ services:
 
                 OPS: |-
                   ${DMATIK_UUID}
+                  ${DMATIK_BEDROCK_UUID}
             volumes:
                 - /home/khadas/docker/minecraft-server/data:/data
             deploy:

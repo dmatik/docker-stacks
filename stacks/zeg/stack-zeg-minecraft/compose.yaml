@@ -4,12 +4,18 @@ services:
         image: itzg/minecraft-bedrock-server:latest
         container_name: minecraft-creative
         restart: "unless-stopped"
-        network_mode: "bridge"
-        ports:
-            - 19132:19132/udp
+        network_mode: "host"
+        #ports:
+        #    - 19132:19132/tcp
+        #    - 19132:19132/udp
+        #    - 19140-19155:19140-19155/udp
         environment:
             TZ: "Asia/Jerusalem"
             EULA: "TRUE"
+            #TRANSPORT: "nethernet"
+            TRANSPORT: "raknet"
+            SERVER_PORT: "19132"
+            SERVER_UDP_PORTS: "19140-19155"
             GAMEMODE: "creative"
             DIFFICULTY: "peaceful"
             MAX_PLAYERS: "30"
@@ -25,12 +31,18 @@ services:
         image: itzg/minecraft-bedrock-server:latest
         container_name: minecraft-survival
         restart: "unless-stopped"
-        network_mode: "bridge"
-        ports:
-            - 19232:19132/udp
+        network_mode: "host"
+        #ports:
+        #    - 19232:19232/tcp
+        #    - 19232:19232/udp
+        #    - 19240-19255:19240-19255/udp
         environment:
             TZ: "Asia/Jerusalem"
             EULA: "TRUE"
+            #TRANSPORT: "nethernet"
+            TRANSPORT: "raknet"
+            SERVER_PORT: "19232"
+            SERVER_UDP_PORTS: "19240-19255"
             GAMEMODE: "survival"
             DIFFICULTY: "peaceful"
             MAX_PLAYERS: "30"
