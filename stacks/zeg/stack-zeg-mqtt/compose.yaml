@@ -20,4 +20,6 @@ services:
             - "1883:1883"
             - "9001:9001"
         labels:
-            - com.centurylinklabs.watchtower.monitor-only=true 
+            - com.centurylinklabs.watchtower.monitor-only=true
+            #- dockhand.update=false
+            #- dockhand.notify=true

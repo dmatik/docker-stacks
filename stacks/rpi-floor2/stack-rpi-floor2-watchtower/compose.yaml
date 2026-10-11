@@ -45,3 +45,4 @@ services:
             WATCHTOWER_NOTIFICATION_TITLE_TAG: "RPi Floor 2"          
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
+            - /root/.docker/config.json:/config.json:ro
