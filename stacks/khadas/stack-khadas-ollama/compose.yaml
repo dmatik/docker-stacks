@@ -1,0 +1,20 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    hostname: ollama
+    ports:
+      - "11434:11434"
+    environment:
+      - TZ="Asia/Jerusalem"
+      #- OLLAMA_HOST=0.0.0.0
+      #- OLLAMA_ORIGINS=*
+      #- OLLAMA_KEEP_ALIVE=24h
+      #- OLLAMA_NUM_PARALLEL=1
+    volumes:
+      - /home/khadas/docker/ollama/data:/root/.ollama
+    deploy:
+      resources:
+        limits:
+          memory: 4.5G
+    restart: unless-stopped

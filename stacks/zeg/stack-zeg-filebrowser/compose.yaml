@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  filebrowser:
+    image: ghcr.io/gtsteffaniak/filebrowser:stable
+    hostname: filebrowser-quantum
+    container_name: filebrowser-quantum
+    ports:
+      - 8395:80
+    restart: unless-stopped
+    user: 0:0
+    volumes:
+      - /volume1/docker/filebrowser/data:/home/filebrowser/data:rw
+      - /volume1:/srv:rw
+    environment:
+      FILEBROWSER_CONFIG: "data/config.yaml"
+      TZ: "Asia/Jerusalem"
+      FILEBROWSER_DATABASE_PATH: /home/filebrowser/data/database.sqlite
+      FILEBROWSER_JWT_TOKEN_SECRET: ${JWT_TOKEN_SECRET}
+      FILEBROWSER_ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 3s
+      start_period: 10s
+      retries: 3

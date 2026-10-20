@@ -1,0 +1,92 @@
+services:
+  db:
+    image: postgres:18-alpine
+    container_name: authentik-db
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "authentik", "-U", "${AUTHENTIK_POSTGRESQL_USER}"]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    environment:
+      POSTGRES_DB: authentik
+      POSTGRES_USER: ${AUTHENTIK_POSTGRESQL_USER}
+      POSTGRES_PASSWORD: ${AUTHENTIK_POSTGRESQL_PASSWORD}
+    volumes:
+      - /volume1/docker/authentik/db:/var/lib/postgresql:rw
+    restart: on-failure:5
+
+  redis:
+    image: redis:7-alpine
+    container_name: authentik-cache
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping || exit 1"]
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    volumes:
+      - /volume1/docker/authentik/redis:/data:rw
+    command: ["redis-server", "--requirepass", "${REDIS_PASSWORD}"]
+    restart: on-failure:5
+
+  server:
+    image: ghcr.io/goauthentik/server:2026.8
+    container_name: authentik-server
+    environment:
+      AUTHENTIK_POSTGRESQL__HOST: db
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+      AUTHENTIK_POSTGRESQL__USER: ${AUTHENTIK_POSTGRESQL_USER}
+      AUTHENTIK_POSTGRESQL__PASSWORD: ${AUTHENTIK_POSTGRESQL_PASSWORD}
+      AUTHENTIK_REDIS__HOST: redis
+      AUTHENTIK_REDIS__PASSWORD: ${REDIS_PASSWORD}
+      AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
+      AUTHENTIK_BOOTSTRAP_PASSWORD: ${AUTHENTIK_BOOTSTRAP_PASSWORD}
+      AUTHENTIK_EMAIL__HOST: smtp.gmail.com
+      AUTHENTIK_EMAIL__USERNAME: ${GMAIL}
+      AUTHENTIK_EMAIL__PASSWORD: ${GMAIL_APP_PASSWORD}
+      AUTHENTIK_EMAIL__FROM: ${GMAIL}
+      AUTHENTIK_HOST: ${AUTHENTIK_HOST}
+      AUTHENTIK_WEB__BASE_URL: https://${AUTHENTIK_HOST}
+      COLORBT_SHOW_HIDDEN: 1
+    ports:
+      - 9700:9000
+      - 9743:9443
+    volumes:
+      - /volume1/docker/authentik/data:/data:rw
+      - /volume1/docker/authentik/templates:/templates:rw
+    command: server
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: on-failure:5
+
+  worker:
+    image: ghcr.io/goauthentik/server:2026.8
+    container_name: authentik-worker
+    user: 0:0
+    environment:
+      AUTHENTIK_POSTGRESQL__HOST: db
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+      AUTHENTIK_POSTGRESQL__USER: ${AUTHENTIK_POSTGRESQL_USER}
+      AUTHENTIK_POSTGRESQL__PASSWORD: ${AUTHENTIK_POSTGRESQL_PASSWORD}
+      AUTHENTIK_REDIS__HOST: redis
+      AUTHENTIK_REDIS__PASSWORD: ${REDIS_PASSWORD}
+      AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
+      AUTHENTIK_BOOTSTRAP_PASSWORD: ${AUTHENTIK_BOOTSTRAP_PASSWORD}
+      AUTHENTIK_EMAIL__HOST: smtp.gmail.com
+      AUTHENTIK_EMAIL__USERNAME: ${GMAIL}
+      AUTHENTIK_EMAIL__PASSWORD: ${GMAIL_APP_PASSWORD}
+      AUTHENTIK_EMAIL__FROM: ${GMAIL}
+      AUTHENTIK_HOST: ${AUTHENTIK_HOST}
+      AUTHENTIK_WEB__BASE_URL: https://${AUTHENTIK_HOST}
+      COLORBT_SHOW_HIDDEN: 1
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /volume1/docker/authentik/data:/data:rw
+      - /volume1/docker/authentik/certs:/certs:rw
+      - /volume1/docker/authentik/templates:/templates:rw
+    command: worker
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: on-failure:5

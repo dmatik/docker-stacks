@@ -1,0 +1,29 @@
+services:
+  pocket-id:
+    image: ghcr.io/pocket-id/pocket-id:v2
+    hostname: pocket-id
+    container_name: pocket-id    
+    restart: unless-stopped
+    ports:
+      - 1411:1411
+    environment:
+      TZ: "Asia/Jerusalem"
+      APP_URL: ${APP_URL}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+      PUID: ${ZEG_PUID}
+      PGID: ${ZEG_PGID}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_TLS: "tls"
+      SMTP_FROM: ${EMAIL}
+      SMTP_USER: ${EMAIL}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}    
+    volumes:
+      - "/volume1/docker/pocket-id/data:/app/data"
+    # Optional healthcheck
+    healthcheck:
+      test: [ "CMD", "/app/pocket-id", "healthcheck" ]
+      interval: 1m30s
+      timeout: 5s
+      retries: 2
+      start_period: 10s
